@@ -29,6 +29,13 @@ public class eventController {
 
     @PostMapping("/newEvent")
     public R newEvent(@RequestBody EventTO to, HttpServletRequest request) {
+        EventTO result = (EventTO) CacheMapUtil.get(CACHE_KEY, to.getEventId());
+        if (result != null) {
+            return R.error("event already exists");
+        }
+        if (CacheMapUtil.getCacheObjectMap(CACHE_KEY).size() > 16){
+            return R.error("event is more than 16, please subscribe our premium service");
+        }
         CacheMapUtil.newCacheMapIfAbsent(CACHE_KEY).put(to.getEventId(), to);
         return R.ok("created");
     }
