@@ -22,13 +22,14 @@ public class eventController {
 
     @PostMapping("/getEvent")
     public R getEvent(@RequestBody EventTO to) {
-        EventTO result = (EventTO) CacheMapUtil.get(CACHE_KEY, to.getEventName());
+        EventTO result = (EventTO) CacheMapUtil.get(CACHE_KEY, to.getEventId());
+        System.out.println(result);
         return R.ok(result);
     }
 
     @PostMapping("/newEvent")
     public R newEvent(@RequestBody EventTO to, HttpServletRequest request) {
-        CacheMapUtil.newCacheMapIfAbsent(CACHE_KEY).put(to.getEventName(), to);
-        return R.ok("get an event");
+        CacheMapUtil.newCacheMapIfAbsent(CACHE_KEY).put(to.getEventId(), to);
+        return R.ok("created");
     }
 }

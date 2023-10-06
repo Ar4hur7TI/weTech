@@ -40,7 +40,7 @@ public class R extends HashMap<String, Object> implements java.io.Serializable {
     }
 
     public static R ok(Object data) {
-        return R.ok("操作成功", data);
+        return R.ok("ok", data);
     }
 
     public static R ok(String msg) {
