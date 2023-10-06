@@ -13,5 +13,4 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class I18NTO {
     private String I18N;
-
 }
