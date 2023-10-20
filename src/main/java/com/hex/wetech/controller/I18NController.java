@@ -1,34 +1,33 @@
 package com.hex.wetech.controller;
 
 import com.hex.wetech.core.models.R;
-import com.hex.wetech.core.to.I18NTO;
+import com.hex.wetech.core.to.I18nTO;
 import com.hex.wetech.utils.CacheMapUtil;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/I18N")
+@RequestMapping("/i18n")
 public class I18NController {
 
     private static final String CACHE_KEY = "I18N";
+    private static final String I18N_KEY = "now";
 
-    @PostMapping("/getI18N")
+    @PostMapping("/get")
     public R getI18N() {
-        String result = (String) CacheMapUtil.get(CACHE_KEY, "now");
+        String result = (String) CacheMapUtil.get(CACHE_KEY, I18N_KEY);
         if (result == null) {
-            CacheMapUtil.newCacheMapIfAbsent(CACHE_KEY).put("now", "English");
-            result = (String) CacheMapUtil.get(CACHE_KEY, "now");
+            CacheMapUtil.newCacheMapIfAbsent(CACHE_KEY).put(I18N_KEY, "English");
+            result = (String) CacheMapUtil.get(CACHE_KEY, I18N_KEY);
         }
         return R.ok(result);
     }
 
-    @PostMapping("/switch18N")
-    public R switch18N(@RequestBody I18NTO to, HttpServletRequest request) {
-        String result = (String) CacheMapUtil.get(CACHE_KEY, "now");
-        CacheMapUtil.newCacheMapIfAbsent(CACHE_KEY).put("now", to.getI18N());
-        return R.ok(to.getI18N());
+    @PostMapping("/switch")
+    public R switch18N(@RequestBody I18nTO to) {
+        CacheMapUtil.newCacheMapIfAbsent(CACHE_KEY).put(I18N_KEY, to.getLanguage());
+        return R.ok(to.getLanguage());
     }
 }

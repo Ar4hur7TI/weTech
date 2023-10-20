@@ -11,6 +11,6 @@ import lombok.Data;
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class I18NTO {
-    private String I18N;
+public class I18nTO {
+    private String language;
 }
