@@ -2,22 +2,17 @@ package com.hex.wetech.core.to;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.hex.wetech.core.commons.valid.Create;
-import com.hex.wetech.core.commons.valid.Query;
-import lombok.Data;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
-
-/**
- * EventTO
- *
- * @author Guofeng Lin
- * @since 2023/10/6
- */
-@Data
+@Getter
+@Setter
 public class EventTO {
-    @NotNull(groups = {Create.class, Query.class}, message = "userId is required when creating event")
+    @NotNull
     private String userId;
     private String eventId;
+    @NotNull(groups = {Create.class}, message = "event name cannot be null")
     private String eventName;
     private String eventDescription;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+0")

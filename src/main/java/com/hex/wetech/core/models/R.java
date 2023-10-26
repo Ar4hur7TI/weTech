@@ -2,10 +2,9 @@ package com.hex.wetech.core.models;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 
-import java.io.Serial;
 import java.util.HashMap;
 
 
@@ -21,7 +20,6 @@ public class R extends HashMap<String, Object> implements java.io.Serializable {
     public static final String CODE_TAG = "code";
     public static final String MSG_TAG = "msg";
     public static final String DATA_TAG = "data";
-    @Serial
     private static final long serialVersionUID = 1L;
 
     public R() {
@@ -53,6 +51,10 @@ public class R extends HashMap<String, Object> implements java.io.Serializable {
 
     public static R error() {
         return R.error("error");
+    }
+
+    public static R error(HttpStatusCode status, String msg) {
+        return R.error(status.value(), msg);
     }
 
     public static R error(String msg) {

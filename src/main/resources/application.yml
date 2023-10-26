@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    url: jdbc:mysql://1.12.66.99:3306/DPMSDEV?useUnicode=true&characterEncoding=utf8&nullCatalogMeansCurrent=true&zeroDateTimeBehavior=convertToNull&useSSL=true
+    #    username: root
+    #    password: DPMS@dev2022
+    url: jdbc:mysql://localhost:3306/DPMSDEV?useUnicode=true&characterEncoding=utf8&nullCatalogMeansCurrent=true&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: Y38GnG9LXt0jp26B
+    hikari:
+      maximum-pool-size: 50
+      max-lifetime: 31000
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 500MB
+
