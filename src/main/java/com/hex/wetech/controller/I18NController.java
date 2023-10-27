@@ -3,6 +3,7 @@ package com.hex.wetech.controller;
 import com.hex.wetech.core.models.R;
 import com.hex.wetech.core.to.I18nTO;
 import com.hex.wetech.utils.CacheMapUtil;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ public class I18NController {
     }
 
     @PostMapping("/switch")
-    public R switch18N(@RequestBody I18nTO to) {
+    public R switch18N(@RequestBody @Validated I18nTO to) {
         CacheMapUtil.newCacheMapIfAbsent(CACHE_KEY).put(I18N_KEY, to.getLanguage());
         return R.ok(to.getLanguage());
     }
