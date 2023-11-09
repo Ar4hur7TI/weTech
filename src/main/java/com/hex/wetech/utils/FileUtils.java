@@ -25,4 +25,15 @@ public class FileUtils {
     public static String calcTmpFilePath(String user, String eventName) {
         return identifier + separator + user + separator + eventName;
     }
+
+    private static boolean copyFile2Dir(String src, String dest) {
+        File srcFile = new File(src);
+        File destFile = new File(dest);
+        if (!srcFile.exists())
+            return false;
+        if (!destFile.exists())
+            if (destFile.mkdirs())
+                return srcFile.renameTo(new File(destFile, srcFile.getName()));
+        return false;
+    }
 }
