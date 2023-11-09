@@ -1,133 +1,133 @@
 .holder {
-  font-family: sans-serif;
-  font-size: 1.5em;
-  line-height: 1.75;
-  margin: auto;
-  padding: 20px 20px;
+    font-family: sans-serif;
+    font-size: 1.5em;
+    line-height: 1.75;
+    margin: auto;
+    padding: 20px 20px;
 }
 
 img {
-  width: 100%;
+    width: 100%;
 }
 
-h1,h2,h3,h4,h5,h6 {
-  margin: 0em 0 1em;
+h1, h2, h3, h4, h5, h6 {
+    margin: 0em 0 1em;
 }
 
-p,ul,ol {
-  color: #1d1d1d;
-  margin-bottom: 2em;
-} 
+p, ul, ol {
+    color: #1d1d1d;
+    margin-bottom: 2em;
+}
 
 input {
-  padding: 7px;
-  border-radius: 6px;
-  font-size: 20px;
-  background: #fbfbfb;
-  border: 2px solid transparent;
-  height: 36px;
-  box-shadow: 0 0 0 1px #dddddd, 0 2px 4px 0 rgb(0 0 0 / 7%),
+    padding: 7px;
+    border-radius: 6px;
+    font-size: 20px;
+    background: #fbfbfb;
+    border: 2px solid transparent;
+    height: 36px;
+    box-shadow: 0 0 0 1px #dddddd, 0 2px 4px 0 rgb(0 0 0 / 7%),
     0 1px 1.5px 0 rgb(0 0 0 / 5%);
 }
+
 input:focus {
-  border: 2px solid #000;
-  border-radius: 4px;
+    border: 2px solid #000;
+    border-radius: 4px;
 }
 
-.result{
-  padding: 40px;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+.result {
+    padding: 40px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
+
 /* --------------Custom CSS Starts Here--- */
 .center {
-  margin: auto;
-  text-align: center;
+    margin: auto;
+    text-align: center;
 }
 
-.ios-button{
-  padding: 13px 27px;
-  align-items: center;
-  gap: 10px;
-  border-radius: 24px;
-  background: #1d3b78;
+.ios-button {
+    padding: 13px 27px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 24px;
+    background: rgba(29, 71, 120, 0.86);
 }
-.ios-button-text{
-  color: var(--neutrals-white, #FFF);
-  text-align: center;
-  font-family: Roboto;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
+
+.ios-button-text {
+    color: var(--neutrals-white, #FFF);
+    text-align: center;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
 }
-#live-caption{
-/*     height: 400px; */
+
+#live-caption {
+    /*     height: 400px; */
     max-height: 370px;
     overflow-y: scroll;
     font-size: large;
     padding: 10px;
 }
+
 #footer {
     bottom: 0;
     width: 100%;
     position: absolute;
     background-color: #f5f5f5;
     margin: 0px 0;
-  }
+}
 
 .scroller {
-  max-height: 50%;
-  overflow: auto;
-  display: flex;
-  flex-direction: column-reverse;
-  margin: auto;
-  text-align: center;
+    max-height: 50%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    margin: auto;
+    text-align: center;
 }
 
-
-
-#header
-{
-	background-color:#1d3b78;
-	font-family:Verdana, Arial, Helvetica, sans-serif;
-	display:block;
-  width: 100%;
+#header {
+    background-color: rgba(60, 190, 235);
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    display: block;
+    width: 100%;
 }
 
-#header h1
-{
-	font-weight:normal;
-	padding-top:20px;
-	margin-left:10px;
-	font-family:Verdana, Arial, Helvetica, sans-serif;
-	margin-top:0;
-	margin-bottom:0;
-  color: white;
+#header h1 {
+    font-weight: normal;
+    padding-top: 20px;
+    margin-left: 10px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: white;
 }
 
-#header h2
-{
-	font-weight:normal;
-	font-size:14px;
-	padding:5px 0 20px 80px;
-	font-family:Verdana, Arial, Helvetica, sans-serif;
-	margin-top:0;
-	margin-bottom:0;
-  color: white;
+#header h2 {
+    font-weight: normal;
+    font-size: 14px;
+    padding: 5px 0 20px 80px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: white;
 }
 
 a.disabled {
-  pointer-events: none;
-  cursor: default;
-  color: grey;
+    pointer-events: none;
+    cursor: default;
+    color: grey;
 }
 
 a.active {
-  pointer-events: none;
-  cursor: default;
-  color: black;
+    pointer-events: none;
+    cursor: default;
+    color: black;
 }
 
-.customPadding{
-  padding:20px;
+.customPadding {
+    padding: 20px;
 }

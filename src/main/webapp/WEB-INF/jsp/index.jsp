@@ -33,14 +33,10 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body style="width: 100%; margin: 0">
-<!-- partial:index.partial.html -->
 <div id="header" class="customPadding" style="justify-content: center;">
-    <!-- <div style="display:flex"> -->
-    <img style="height:24px; width:24px; justify-content: center;" src="/images/x.png" alt="x.png"/>
-    <img style="height: 43px; width:122px; justify-content: center;" src="/images/logo-wetech.png" alt="logo">
+    <img style="height: 60px; width:150px; justify-content: center;" src="/images/logo-tran.png" alt="logo">
     <h1 id="caption-header" class="caption-header" style="font-size: 24px; justify-content: center;">Event Live
         Captioning</h1>
-    <!-- </div> -->
 </div>
 <div class="holder">
     <div style="display: flex; justify-content: center; padding: 0 0 10px 0">

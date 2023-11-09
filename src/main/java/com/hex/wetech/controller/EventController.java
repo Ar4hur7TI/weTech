@@ -57,9 +57,9 @@ public class EventController {
         } else if (eventMap.containsKey(to.getEventName())) {
             return R.error("event name already exist");
         }
-        to.setEventId(SeqUtils.getId());
-        String res = fileService.createEventFile(to.getUserId(), to.getEventId());
+        String res = fileService.createEventFile(to.getUserId(), to.getEventName());
         if (res != null) {
+            to.setEventId(SeqUtils.getId());
             eventMap.put(to.getEventName(), to);
             CacheMapUtil.set(CACHE_KEY, to.getUserId(), eventMap);
             return R.ok(request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + res);

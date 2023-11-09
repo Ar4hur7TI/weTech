@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class FileServiceImpl implements IFileService {
     @Override
-    public String createEventFile(String userId, String eventId) {
-        return FileUtils.initEventFile(userId, eventId);
+    public String createEventFile(String userId, String Id) {
+        return FileUtils.initEventFile(userId, Id);
     }
 }
