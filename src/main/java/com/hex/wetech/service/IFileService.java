@@ -7,5 +7,5 @@ package com.hex.wetech.service;
  * @since 2023/10/20
  */
 public interface IFileService {
-    boolean createEventFile(String eventId, String eventName);
+    String createEventFile(String userId, String eventId);
 }

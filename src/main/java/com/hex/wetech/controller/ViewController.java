@@ -16,4 +16,8 @@ public class ViewController {
     public String index() {
         return "index";
     }
+    @RequestMapping(value = "/show")
+    public String show() {
+        return "show";
+    }
 }

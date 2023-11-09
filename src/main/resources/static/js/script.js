@@ -5,6 +5,7 @@ let interval = null;
 eng = document.getElementById("eng");
 french = document.getElementById("french");
 let isStreamingCaptions = false;
+let BASE_URL = "http://localhost:8080";
 
 function translate(language) {
     currentLanguage = language
@@ -12,6 +13,8 @@ function translate(language) {
 }
 
 $(document).ready(function () {
+    let str = $("#basePath").val();
+    if (str) BASE_URL = str;
     loadLang("eng")
     $("#french").click(function () {
         translate("french");
@@ -26,6 +29,7 @@ function buttonTapped() {
     isStreamingCaptions = !isStreamingCaptions;
     $("#get-live-caption").html(isStreamingCaptions ? localization['get-live-caption-stop'] : localization['get-live-caption']);
     if (isStreamingCaptions) {
+        getTranscript();
         interval = setInterval(() => {
             if (transcript) {
                 $('#live-caption-empty').hide();
@@ -44,14 +48,14 @@ function buttonTapped() {
 
 function loadLang(lang) {
     $.ajax({
-        url: "i18n/switch",
+        url: BASE_URL + "/i18n/switch",
         type: "POST",
         dataType: "json",
         headers: {'Content-Type': 'application/json'},
         data: JSON.stringify({language: lang}),
         success: function (result) {
             if (result.code === 200) {
-                $.getJSON("i18n/loadLang", (text) => {
+                $.getJSON(BASE_URL + "/i18n/loadLang", (text) => {
                     transcript = ''
                     $("#live-caption").html(transcript);
                     $('#live-caption-empty').show();
@@ -75,7 +79,7 @@ function loadLang(lang) {
 function getTranscript() {
     console.log("getTranscript");
     $.ajax({
-        url: "i18n/getTranscript",
+        url: BASE_URL + "/i18n/getTranscript",
         type: "POST",
         dataType: "json",
         headers: {'Content-Type': 'application/json'},

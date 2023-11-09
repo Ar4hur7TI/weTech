@@ -7,6 +7,7 @@ import com.hex.wetech.core.to.EventTO;
 import com.hex.wetech.service.IFileService;
 import com.hex.wetech.utils.CacheMapUtil;
 import com.hex.wetech.utils.SeqUtils;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,17 +49,20 @@ public class EventController {
 //    }
 
     @PostMapping("new")
-    public R newEvent(@RequestBody @Validated({Create.class}) EventTO to) {
+    public R newEvent(@RequestBody @Validated({Create.class}) EventTO to, HttpServletRequest request) {
         ConcurrentHashMap<String, Map<String, EventTO>> map = CacheMapUtil.newCacheMapIfAbsent(CACHE_KEY);
         Map<String, EventTO> eventMap = map.getOrDefault(to.getUserId(), new HashMap<>(16));
         if (eventMap.size() > 16) {
             return R.error("more than 16 events, please subscribe our premium service");
+        } else if (eventMap.containsKey(to.getEventName())) {
+            return R.error("event name already exist");
         }
-        if (fileService.createEventFile(to.getUserId(), to.getEventName())) {
-            to.setEventId(SeqUtils.getId());
-            eventMap.put(to.getEventId(), to);
+        to.setEventId(SeqUtils.getId());
+        String res = fileService.createEventFile(to.getUserId(), to.getEventId());
+        if (res != null) {
+            eventMap.put(to.getEventName(), to);
             CacheMapUtil.set(CACHE_KEY, to.getUserId(), eventMap);
-            return R.ok(to.getEventId());
+            return R.ok(request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + res);
         }
         return R.error("create event failed, you might enter same event name");
     }
