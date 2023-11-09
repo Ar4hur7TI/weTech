@@ -14,7 +14,6 @@ public class ViewController {
 
     @RequestMapping(value = "/")
     public String index() {
-        System.out.println("index");
         return "index";
     }
 }
