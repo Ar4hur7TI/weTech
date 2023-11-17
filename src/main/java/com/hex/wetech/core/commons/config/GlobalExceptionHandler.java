@@ -3,6 +3,8 @@ package com.hex.wetech.core.commons.config;
 import com.hex.wetech.core.models.R;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -24,8 +26,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public R handleMethodDeniedException(MethodArgumentNotValidException e, HttpServletRequest request) {
-        return R.error(e.getStatusCode(), "Unsatisfied Parameter for " + request.getRequestURI());
+    public ResponseEntity<R> handleMethodDeniedException(MethodArgumentNotValidException e, HttpServletRequest request) {
+        HttpStatusCode statusCode = e.getStatusCode();
+        R r = new R(statusCode.value(), "Unsatisfied Parameter for " + request.getRequestURI(), null);
+        return new ResponseEntity<>(r, statusCode);
     }
 
 

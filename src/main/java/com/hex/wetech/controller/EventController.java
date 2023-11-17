@@ -43,10 +43,6 @@ public class EventController {
                 R.ok(eventMap.get(to.getEventId())) : R.ok(new ArrayList<>(getEventMap(to.getUserId()).values()));
     }
 
-//    @PostMapping("list")
-//    public R listEvent(@RequestBody @Validated({Query.class}) EventTO to) {
-//        return R.ok(new ArrayList<>(getEventMap(to.getUserId()).values()));
-//    }
 
     @PostMapping("new")
     public R newEvent(@RequestBody @Validated({Create.class}) EventTO to, HttpServletRequest request) {
