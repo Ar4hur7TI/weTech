@@ -17,12 +17,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * EventController
- *
- * @author Guofeng Lin
- * @since 2023/10/6
- */
 @RestController
 @RequestMapping("/event")
 @CrossOrigin(origins = "*", maxAge = 3600)
