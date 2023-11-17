@@ -6,6 +6,7 @@ eng = document.getElementById("eng");
 french = document.getElementById("french");
 let isStreamingCaptions = false;
 let BASE_URL = "http://localhost:8080";
+let eventName = "WeTech";
 
 function translate(language) {
     currentLanguage = language
@@ -15,6 +16,15 @@ function translate(language) {
 $(document).ready(function () {
     let str = $("#basePath").val();
     if (str) BASE_URL = str;
+    let path = window.location.pathname;
+    let parts = path.split('/');
+    let indexPosition = parts.indexOf("index.jsp");
+    if (indexPosition > 0 && indexPosition - 1 < parts.length) {
+        let beforeIndex = parts[indexPosition - 1];
+        if (beforeIndex) {
+            eventName = beforeIndex;
+        }
+    }
     loadLang("eng")
     $("#french").click(function () {
         translate("french");
@@ -77,15 +87,36 @@ function loadLang(lang) {
 }
 
 function getTranscript() {
-    console.log("getTranscript");
-    $.ajax({
-        url: BASE_URL + "/i18n/getTranscript",
-        type: "POST",
-        dataType: "json",
-        headers: {'Content-Type': 'application/json'},
-        success: function (result) {
-            console.log(result)
-            transcript = result.msg;
+    // let url = "https://script.google.com/macros/s/AKfycbzqOWlC9bT6TtLp1QJLzAkwDZJKTcCZYnoDhN4JIMXTo5lEvtPruYb-3vrILj__yO_A/exec?streamName=WeTech";
+    let url = "https://script.google.com/macros/s/AKfycbzqOWlC9bT6TtLp1QJLzAkwDZJKTcCZYnoDhN4JIMXTo5lEvtPruYb-3vrILj__yO_A/exec?streamName=" + eventName;
+    // let url = BASE_URL + "/i18n/getTranscript";
+    $.getJSON(
+        url,
+        function (a) {
+            // let json = JSON.stringify(a);
+            if (a && a.Transcript && a.Transcript != "") {
+                if (currentLanguage === "french") {
+                    transcript = a.Transcript_FR;
+                } else {
+                    transcript = a.Transcript;
+                }
+                isStreamingCaptions = a.IsActivelyStreaming
+            }
         }
-    });
+    );
 }
+
+// This function is for Demo purpose only
+// function getTranscript() {
+//     console.log("getTranscript");
+//     $.ajax({
+//         url: BASE_URL + "/i18n/getTranscriptDemo",
+//         type: "POST",
+//         dataType: "json",
+//         headers: {'Content-Type': 'application/json'},
+//         success: function (result) {
+//             console.log(result)
+//             transcript = result.msg;
+//         }
+//     });
+// }

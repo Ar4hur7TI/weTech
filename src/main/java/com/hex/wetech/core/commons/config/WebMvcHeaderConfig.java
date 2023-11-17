@@ -14,6 +14,7 @@ public class WebMvcHeaderConfig {
         config.setAllowCredentials(true);
         config.addAllowedOriginPattern("*");
         config.addAllowedHeader("*");
+        config.addAllowedOrigin("*");
         config.addAllowedMethod("*");
         config.setMaxAge(1800L);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

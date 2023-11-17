@@ -6,8 +6,11 @@ import com.hex.wetech.utils.CacheMapUtil;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/i18n")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class I18NController {
 
     private static final String CACHE_KEY = "I18N";
@@ -37,16 +40,17 @@ public class I18NController {
             return "{\"caption-header\":\"Event Live Captioning\", \"get-live-caption\":\"Get Live Captions\", \"get-live-caption-stop\":\"Stop Streaming\", \"english-language\":\"English\", \"french-language\":\"Français\", \"live-caption-empty\":\"Transcription will display here\", \"hotmail\":\"PS: I love you. Get your free live-event transcription at\"}";
     }
 
-    @PostMapping("/getTranscript")
-    public R getTranscript() {
-        String result = (String) CacheMapUtil.get(CACHE_KEY, I18N_KEY);
+    @GetMapping("/getTranscriptDemo")
+    public R getTranscriptDemo() {
+        Map<Object, Object> cacheMapByKey = CacheMapUtil.newCacheMapIfAbsent(CACHE_KEY);
+        String result = (String) cacheMapByKey.get(I18N_KEY);
         int cnt;
         String[] transcript;
         if ("french".equalsIgnoreCase(result)) {
-            cnt = (int) CacheMapUtil.getCacheMapByKey(CACHE_KEY).getOrDefault(TRANSCRIPT_FR_KEY, 0);
+            cnt = (int) cacheMapByKey.getOrDefault(TRANSCRIPT_FR_KEY, 0);
             transcript = FR_TRANSCRIPT;
         } else {
-            cnt = (int) CacheMapUtil.getCacheMapByKey(CACHE_KEY).getOrDefault(TRANSCRIPT_EN_KEY, 0);
+            cnt = (int) cacheMapByKey.getOrDefault(TRANSCRIPT_EN_KEY, 0);
             transcript = EN_TRANSCRIPT;
         }
         if (cnt >= transcript.length) {
@@ -60,6 +64,11 @@ public class I18NController {
             sb.append(transcript[i]).append("<br/>");
         }
         return R.ok(sb.toString());
+    }
+
+    @GetMapping("/getTranscript")
+    public String getTranscript() {
+        return "{\"Transcript\":\"\",\"IsActivelyStreaming\":true,\"Transcript_FR\":\"\"}";
     }
 
     @PostMapping("/switch")

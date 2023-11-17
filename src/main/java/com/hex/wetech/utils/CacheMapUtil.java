@@ -50,7 +50,8 @@ public class CacheMapUtil {
     }
 
     public static Map<Object, Object> getCacheMapByKey(String key) {
-        return CollectionUtil.computeIfAbsent(CACHE_MAP, key, (k) -> newCacheMap(key));
+        return CACHE_MAP.computeIfAbsent(key, (k) -> newCacheMap(key));
+//        return CollectionUtil.computeIfAbsent(CACHE_MAP, key, (k) -> newCacheMap(key));
     }
 
     public static Map<String, Map<Object, Object>> getCacheMap() {

@@ -9,10 +9,7 @@ import com.hex.wetech.utils.CacheMapUtil;
 import com.hex.wetech.utils.SeqUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,6 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @RestController
 @RequestMapping("/event")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class EventController {
     private static final String CACHE_KEY = "event";
     private final IFileService fileService;
