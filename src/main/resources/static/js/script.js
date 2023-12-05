@@ -86,37 +86,36 @@ function loadLang(lang) {
     })
 }
 
-function getTranscript() {
-    // let url = "https://script.google.com/macros/s/AKfycbzqOWlC9bT6TtLp1QJLzAkwDZJKTcCZYnoDhN4JIMXTo5lEvtPruYb-3vrILj__yO_A/exec?streamName=WeTech";
-    let url = "https://script.google.com/macros/s/AKfycbzqOWlC9bT6TtLp1QJLzAkwDZJKTcCZYnoDhN4JIMXTo5lEvtPruYb-3vrILj__yO_A/exec?streamName=" + eventName;
-    // let url = BASE_URL + "/i18n/getTranscript";
-    $.getJSON(
-        url,
-        function (a) {
-            // let json = JSON.stringify(a);
-            if (a && a.Transcript && a.Transcript != "") {
-                if (currentLanguage === "french") {
-                    transcript = a.Transcript_FR;
-                } else {
-                    transcript = a.Transcript;
-                }
-                isStreamingCaptions = a.IsActivelyStreaming
-            }
-        }
-    );
-}
+// function getTranscript() {
+//     // let url = "https://script.google.com/macros/s/AKfycbzqOWlC9bT6TtLp1QJLzAkwDZJKTcCZYnoDhN4JIMXTo5lEvtPruYb-3vrILj__yO_A/exec?streamName=WeTech";
+//     let url = "https://script.google.com/macros/s/AKfycbzqOWlC9bT6TtLp1QJLzAkwDZJKTcCZYnoDhN4JIMXTo5lEvtPruYb-3vrILj__yO_A/exec?streamName=" + eventName;
+//     // let url = BASE_URL + "/i18n/getTranscript";
+//     $.getJSON(
+//         url,
+//         function (a) {
+//             // let json = JSON.stringify(a);
+//             if (a && a.Transcript && a.Transcript != "") {
+//                 if (currentLanguage === "french") {
+//                     transcript = a.Transcript_FR;
+//                 } else {
+//                     transcript = a.Transcript;
+//                 }
+//                 isStreamingCaptions = a.IsActivelyStreaming
+//             }
+//         }
+//     );
+// }
 
 // This function is for Demo purpose only
-// function getTranscript() {
-//     console.log("getTranscript");
-//     $.ajax({
-//         url: BASE_URL + "/i18n/getTranscriptDemo",
-//         type: "POST",
-//         dataType: "json",
-//         headers: {'Content-Type': 'application/json'},
-//         success: function (result) {
-//             console.log(result)
-//             transcript = result.msg;
-//         }
-//     });
-// }
+function getTranscript() {
+    $.ajax({
+        url: BASE_URL + "/i18n/getTranscriptDemo",
+        type: "GET",
+        dataType: "json",
+        headers: {'Content-Type': 'application/json'},
+        success: function (result) {
+            console.log(result)
+            transcript = result.msg;
+        }
+    });
+}

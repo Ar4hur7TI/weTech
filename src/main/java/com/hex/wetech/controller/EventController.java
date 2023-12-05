@@ -50,7 +50,7 @@ public class EventController {
             to.setEventId(SeqUtils.getId());
             eventMap.put(to.getEventName(), to);
             CacheMapUtil.set(CACHE_KEY, to.getUserId(), eventMap);
-            return R.ok(request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + res);
+            return R.ok(to.getEventId(),request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + res);
         }
         return R.error("create event failed, you might enter same event name");
     }
